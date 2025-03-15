@@ -91,7 +91,8 @@ def generate_launch_description():
                 os.path.join(pkg_gazebo_ros, 'launch', 'gzserver.launch.py')
             ),
             launch_arguments={
-                              'world': world_file, 'verbose': "true",
+                              #'world': world_file,
+                              'verbose': "true",
                               'extra_gazebo_args': 'verbose'}.items()
         ),
 
