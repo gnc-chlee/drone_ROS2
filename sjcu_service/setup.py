@@ -2,17 +2,16 @@ from setuptools import find_packages, setup
 from glob import glob
 import os
 
-package_name = 'sjcu_topic'
+package_name = 'sjcu_service'
 
 setup(
     name=package_name,
     version='0.0.0',
-    packages=[package_name],
+    packages=find_packages(exclude=['test']),
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        (os.path.join('share', package_name,'srv'), glob('srv/*.srv')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -23,9 +22,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        'move_publisher = sjcu_topic.move_publisher:main',
-        'position_subscriber = sjcu_topic.position_subscriber:main',
-        'position_control = sjcu_topic.position_control:main',
+            'takeoff_service = sjcu_service.takeoff_service:main',
         ],
     },
 )
