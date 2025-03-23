@@ -1,1 +1,1 @@
-/home/lch/ros2_ws/install/sjtu_drone_description:/home/lch/ros2_ws/install/sjtu_drone_control:/home/lch/ros2_ws/install/sjtu_drone_bringup:/home/lch/ros2_ws/install/sjcu_topic:/home/lch/ros2_ws/install/sjcu_service:/home/lch/ros2_ws/install/sjcu_package:/opt/ros/humble
+/home/lch/ros2_ws/install/sjtu_drone_description:/home/lch/ros2_ws/install/sjtu_drone_control:/home/lch/ros2_ws/install/sjtu_drone_bringup:/home/lch/ros2_ws/install/sjcu_topic:/home/lch/ros2_ws/install/sjcu_service:/home/lch/ros2_ws/install/sjcu_package:/home/lch/ros2_ws/install/sjcu_custom:/opt/ros/humble

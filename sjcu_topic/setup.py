@@ -26,6 +26,8 @@ setup(
         'move_publisher = sjcu_topic.move_publisher:main',
         'position_subscriber = sjcu_topic.position_subscriber:main',
         'position_control = sjcu_topic.position_control:main',
+        'rotate_drone_server = sjcu_topic.rotate_drone_server:main',
+        'move_drone_server = sjcu_topic.move_drone_server:main',
         ],
     },
 )

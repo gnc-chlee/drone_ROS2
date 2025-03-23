@@ -1,0 +1,13 @@
+# Goal
+float64 pos_x
+float64 pos_y
+float32 pos_z
+---
+# Result
+bool success
+string message
+---
+# Feedback
+float32 current_x
+float32 current_y
+float32 current_z

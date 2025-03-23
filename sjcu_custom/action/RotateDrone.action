@@ -1,0 +1,10 @@
+# Goal
+float32 angle  # 회전할 목표 각도 (radians)
+---
+# Result
+bool success
+string message
+---
+# Feedback
+float32 current_angle  # 현재 yaw (radians)
+float32 remaining_angle  # 남은 회전 각도 (radians)
