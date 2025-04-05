@@ -37,9 +37,9 @@ class MovePublisher(Node):
             self.last_switch_time = current_time
         
         if self.forward:
-            msg.linear.z = 1.0  # 전진 속도 (m/s)
+            msg.linear.x = 1.0  # 전진 속도 (m/s)
         else:
-            msg.linear.z = -1.0  # 후진 속도 (m/s)
+            msg.linear.x = -1.0  # 후진 속도 (m/s)
         
         # 계산된 속도 메시지 발행
         self.publisher_.publish(msg)

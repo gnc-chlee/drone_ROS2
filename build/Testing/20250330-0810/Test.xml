@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Site BuildName="(empty)"
-	BuildStamp="20250323-1614-Experimental"
+	BuildStamp="20250330-0810-Experimental"
 	Name="lch-virtual-machine"
 	Generator="ctest-3.22.1"
 	CompilerName="/usr/bin/g++"
@@ -24,11 +24,11 @@
 	ProcessorClockFrequency="3792.73"
 	>
 	<Testing>
-		<StartDateTime>Mar 24 08:52 KST</StartDateTime>
-		<StartTestTime>1742773954</StartTestTime>
+		<StartDateTime>Mar 31 01:20 KST</StartDateTime>
+		<StartTestTime>1743351643</StartTestTime>
 		<TestList/>
-		<EndDateTime>Mar 24 08:52 KST</EndDateTime>
-		<EndTestTime>1742773954</EndTestTime>
+		<EndDateTime>Mar 31 01:20 KST</EndDateTime>
+		<EndTestTime>1743351643</EndTestTime>
 		<ElapsedMinutes>0</ElapsedMinutes>
 	</Testing>
 </Site>

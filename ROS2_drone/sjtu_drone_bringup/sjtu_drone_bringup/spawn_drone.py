@@ -17,7 +17,7 @@
 import sys
 import rclpy
 from gazebo_msgs.srv import SpawnEntity
-
+from geometry_msgs.msg import Pose
 
 def main(args=None):
     rclpy.init(args=args)
@@ -29,6 +29,10 @@ def main(args=None):
 
     req = SpawnEntity.Request()
     req.name = namespace
+    # req.initial_pose = Pose()
+    # req.initial_pose.position.x = 0
+    # req.initial_pose.position.y = 0
+    # req.initial_pose.position.z = 4
     req.xml = content
     req.robot_namespace = namespace
     req.reference_frame = "world"
