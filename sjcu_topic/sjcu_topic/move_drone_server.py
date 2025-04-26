@@ -27,7 +27,7 @@ class MoveDroneServer(Node):
         self.target_y = 0.0
         self.target_z = 0.0
         self.p_gain = 0.3  # P 제어 게인
-        self.tolerance = 0.3  # 허용 오차 (m)
+        self.tolerance = 0.2  # 허용 오차 (m)
         self.has_odom_data = False
         
         self.get_logger().info('MoveDrone Action Server has been started.')

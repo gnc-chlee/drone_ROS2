@@ -73,7 +73,7 @@ class RotateDroneServer(Node):
         self.get_logger().info(f'Calculated angle difference: {math.degrees(angle_diff):.2f} degrees')
 
         twist_msg.angular.z = 0.5 if angle_diff > 0 else -0.5  # 회전 속도 고정
-        tolerance = 0.01  # 허용 오차 (radians)
+        tolerance = 0.001  # 허용 오차 (radians)
 
         # 회전 루프
         while abs(angle_diff) > tolerance and rclpy.ok():
