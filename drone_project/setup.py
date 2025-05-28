@@ -26,6 +26,7 @@ setup(
         'console_scripts': [
             'camera_display = drone_project.camera_display:main',
             'turtlebot_mover = drone_project.turtlebot_mover:main',
+            'turtlebot_control = drone_project.turtlebot_control:main',
         ],
     },
 )

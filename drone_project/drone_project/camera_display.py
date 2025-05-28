@@ -2,6 +2,7 @@ import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image
 from geometry_msgs.msg import Twist
+from nav_msgs.msg import Odometry
 from cv_bridge import CvBridge
 import cv2
 import numpy as np
@@ -9,11 +10,33 @@ import numpy as np
 class CameraSubscriber(Node):
     def __init__(self):
         super().__init__('camera_subscriber_node')
-        self.subscription = self.create_subscription(Image,'/simple_drone/bottom/image_raw',  # 드론 하단 카메라 토픽
+        self.declare_parameter('z_setpoint', 2.0)    # 목표 높이
+        self.declare_parameter('z_p_gain', 0.25) # 비례 제어 게인
+
+        self.camera_sub = self.create_subscription(Image,'/simple_drone/bottom/image_raw',  # 드론 하단 카메라 토픽
             self.camera_callback,10)
+        # 드론 위치 정보 서브스크라이버
+        self.odom_sub = self.create_subscription(Odometry,'/simple_drone/odom',  # 드론 위치 정보 토픽
+            self.odom_callback,10)
+        # 드론 제어 명령 퍼블리셔
         self.cmd_vel_pub = self.create_publisher(Twist,'/simple_drone/cmd_vel',10)  # 드론 제어 명령 퍼블리시
         self.bridge = CvBridge()
         self.get_logger().info('------ Camera Node Started -----')
+        self.current_x = 0.0
+        self.current_y = 0.0
+        self.current_z = 0.0
+        self.target_x = 0.0
+        self.target_y = 0.0
+        self.target_z = 0.0
+        self.p_gain_alt = 0.0  # P 제어 게인
+        self.has_odom_data = False
+
+    def odom_callback(self, msg):
+        # 드론의 현재 위치를 업데이트
+        self.current_x = msg.pose.pose.position.x
+        self.current_y = msg.pose.pose.position.y
+        self.current_z = msg.pose.pose.position.z
+
 
     def camera_callback(self, camera_msg):
         cv_image = self.bridge.imgmsg_to_cv2(camera_msg, "bgr8")
@@ -61,6 +84,18 @@ class CameraSubscriber(Node):
                 cmd_vel.linear.z = 0.0
                 cmd_vel.angular.z = 0.0
 
+        # P 고도 제어
+        # self.target_z = 2.0  # 목표 높이
+        # self.p_gain_alt = 0.25  # 비례 제어 게인
+
+        # Parameter 값 가져오기
+        self.target_z = self.get_parameter('z_setpoint').get_parameter_value().double_value
+        self.p_gain_alt = self.get_parameter('z_p_gain').get_parameter_value().double_value
+        # 드론의 현재 높이와 목표 높이 간 오차 계산
+        error_z = self.target_z - self.current_z
+        cmd_vel.linear.z = self.p_gain_alt * error_z
+
+        self.get_logger().info(f"altitude: {self.current_z:.2f}, error: {error_z:.2f}")
         # 드론 제어 명령 퍼블리시
         self.cmd_vel_pub.publish(cmd_vel)
         cv2.imshow("Drone Camera", cv_image)
